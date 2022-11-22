@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15%;
+  }
+
+  .center{
+    background: center / contain no-repeat;
+    white-space: nowrap;
+    display:inline;
+  }
