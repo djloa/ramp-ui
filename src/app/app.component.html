@@ -1,20 +1,16 @@
 <mat-form-field appearance="fill">
   <mat-label>Amount</mat-label>
-  <input matInput [value]="email" (change)="onChangeEvent($event)">
+  <input type="number" matInput [value]="amount" (change)="onChangeEvent($event)" numbersOnly>
 </mat-form-field>
 <mat-form-field appearance="fill">
   <mat-label>Adress</mat-label>
   <input matInput>
 </mat-form-field>
 <mat-form-field appearance="fill">
-  <mat-label>Select</mat-label>
-  <mat-select>
-    <mat-option>BNB
-      <img with="20" height="20" src="assets/bnb-seeklogo.com.svg">
-    </mat-option>
-    <mat-option>ETH
-      <img with="20" height="20" src="assets/eth.png">
-    </mat-option>
-  </mat-select>
+<mat-select (valueChange)="changeValue($event)" [(value)]="currencies[0].name">
+  <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency.name}}
+    <img with="20" height="20" src={{currency.img}}/>
+  </mat-option>
+ </mat-select>
 </mat-form-field>
 <button mat-raised-button color="primary" (click)="onSave()">Send</button>

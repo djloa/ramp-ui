@@ -8,9 +8,9 @@ export class QuotesService {
 
   }
 
-  baseURL: string = "localhost:1234/quotes?currency=ETH&amount=";
+  baseURL: string = "/api/quotes?currency=";
 
-  getQuotes(amount: string): Observable<any> {
-    return this.http.get(this.baseURL + amount)
+  getQuotes(amount: string, currencyName: string): Observable<any> {
+    return this.http.get(this.baseURL + currencyName + '&amount=' +amount)
   }
 }
