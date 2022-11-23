@@ -9,9 +9,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button'
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
 
 
 import { QuotesService } from './quotesService';
+import { OrderService } from './orderService';
+import { AnalyticsService } from './analyticsService';
 
 
 
@@ -28,10 +31,13 @@ import { QuotesService } from './quotesService';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [
-    QuotesService
+    QuotesService,
+    OrderService,
+    AnalyticsService
   ],
   bootstrap: [AppComponent]
 })

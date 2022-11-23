@@ -1,16 +1,60 @@
 <mat-form-field appearance="fill">
-  <mat-label>Amount</mat-label>
-  <input type="number" matInput [value]="amount" (change)="onChangeEvent($event)" numbersOnly>
+  <mat-label>Amount(USD)</mat-label>
+  <input type="number" matInput [value]="amount" (change)="onChangeAmount($event)" numbersOnly>
 </mat-form-field>
 <mat-form-field appearance="fill">
-  <mat-label>Adress</mat-label>
-  <input matInput>
+  <mat-label>Conversion</mat-label>
+  <input type="number" matInput [value]="conversion" disabled>
 </mat-form-field>
 <mat-form-field appearance="fill">
-<mat-select (valueChange)="changeValue($event)" [(value)]="currencies[0].name">
+  <mat-label>Address</mat-label>
+  <input  matInput [value]="address" (change)="onChangeAddress($event)">
+</mat-form-field>
+<mat-form-field appearance="fill">
+<!-- <mat-select [(value)]="currencies[1].id" (valueChange)="changeValue($event)"> -->
+  <mat-select [value]="currentcurrency" (valueChange)="onChangeCurrency($event)">
+    <mat-select-trigger>
+      {{currentcurrency.name}} <img with="20" height="20" src={{currentcurrency.img}}/>
+    </mat-select-trigger>
   <mat-option *ngFor="let currency of currencies" [value]="currency">{{currency.name}}
     <img with="20" height="20" src={{currency.img}}/>
   </mat-option>
  </mat-select>
 </mat-form-field>
-<button mat-raised-button color="primary" (click)="onSave()">Send</button>
+<button mat-raised-button color="primary" [disabled]="validateForm()" (click)="onSave()">Send</button>
+
+<br>
+<br>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="wallet">
+    <th mat-header-cell *matHeaderCellDef> Wallet </th>
+    <td mat-cell *matCellDef="let element"> {{element.wallet}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="currency">
+    <th mat-header-cell *matHeaderCellDef> Currency </th>
+    <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="count">
+    <th mat-header-cell *matHeaderCellDef> Count </th>
+    <td mat-cell *matCellDef="let element"> {{element.count}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="ammount">
+    <th mat-header-cell *matHeaderCellDef> Ammount </th>
+    <td mat-cell *matCellDef="let element"> {{element.ammount}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
