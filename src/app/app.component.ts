@@ -63,15 +63,13 @@ export class AppComponent implements OnInit {
           console.log('response received ' + response.value);
           this.conversion = response.value;
           console.log('conversion: ' + this.conversion);
-          // this.repos = response; 
         },
         (error) => {
           console.error('Request failed with error');
-          //this.errorMessage = error;
           this.loading = false;
         },
         () => {
-          console.error('Request completed'); //This is actually not needed 
+          console.error('Request completed'); 
           this.loading = false;
         });
   }
@@ -81,10 +79,10 @@ export class AppComponent implements OnInit {
       .subscribe(
         (response) => {
           console.log('analytics received ' + JSON.stringify(response));
-          this.analyticsWallet = response[0]._id.wallet;
-          this.analyticsCurrency = response[0].totalAmount.$numberDecimal;
-          this.analyticsAmount = response[0].totalAmount.$numberDecimal;
-          this.analyticsCount = response[0].count;
+          this.analyticsWallet = response._id.wallet;
+          this.analyticsCurrency = response.totalAmount.$numberDecimal;
+          this.analyticsAmount = response.totalAmount.$numberDecimal;
+          this.analyticsCount = response.count;
           this.dataSource = [
             {wallet: this.analyticsWallet, currency: this.analyticsCurrency, count: this.analyticsCount, ammount: this.analyticsAmount},
           ];
